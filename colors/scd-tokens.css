@@ -1,0 +1,28 @@
+:root{
+  --scd-blue:#1c2d5b;
+  --scd-gray:#8b8d9e;
+  --scd-green:#41beb1;
+  --scd-red:#d52e36;
+  --scd-space-1:#494d62;
+  --scd-space-2:#8b8d9e;
+  --scd-space-3:#ffffff;
+  --scd-hls-1:#61041f;
+  --scd-hls-2:#d52e36;
+  --scd-hls-3:#f15f60;
+  --scd-commercial-1:#1c2d5b;
+  --scd-commercial-2:#4a94c6;
+  --scd-commercial-3:#40c3d6;
+  --scd-military-1:#003d36;
+  --scd-military-2:#238b7c;
+  --scd-military-3:#41beb1;
+  --web-navy-900:#132350;
+  --web-navy-700:#1c2d5b;
+  --web-teal-300:#4fe0d1;
+  --web-teal-500:#41beb1;
+  --web-red-500:#d3232a;
+  --web-neutral-400:#94a3b8;
+  --web-neutral-100:#e8eaf0;
+  --web-neutral-50:#f9fafb;
+  --radius-sm:8px;
+  --radius-xl:24px;
+}
