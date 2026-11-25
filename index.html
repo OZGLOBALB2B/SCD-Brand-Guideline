@@ -37,10 +37,6 @@ html.scd-locked, html.scd-locked body{overflow:hidden}
 <script>
 (function(){
   var PASSWORD = "1234";
-  var KEY = "scd-guideline-auth";
-  var ok = false;
-  try { ok = localStorage.getItem(KEY) === "ok"; } catch (e) {}
-  if (ok) return;
   document.documentElement.classList.add("scd-locked");
   document.addEventListener("DOMContentLoaded", function(){
     var gate = document.createElement("div");
@@ -61,7 +57,6 @@ html.scd-locked, html.scd-locked body{overflow:hidden}
     form.addEventListener("submit", function(e){
       e.preventDefault();
       if (input.value === PASSWORD) {
-        try { localStorage.setItem(KEY, "ok"); } catch (e) {}
         document.documentElement.classList.remove("scd-locked");
         gate.remove();
       } else {
