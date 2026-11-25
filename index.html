@@ -1,6 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- ===== Password gate (simple, client-side). Change PASSWORD below. ===== -->
+<style>
+html.scd-locked body > *:not(#scd-gate){display:none !important}
+html.scd-locked, html.scd-locked body{overflow:hidden}
+#scd-gate{position:fixed;inset:0;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+  padding:max(12vh, calc(env(safe-area-inset-top,0px) + 48px)) 24px calc(env(safe-area-inset-bottom,0px) + 24px);
+  background:
+    linear-gradient(180deg,rgba(14,26,64,.70) 0%,rgba(14,26,64,.25) 45%,rgba(14,26,64,.15) 65%,rgba(14,26,64,.70) 100%),
+    url("login/login-bg.jpg") center 60%/cover no-repeat #0e1a40;
+  color:#fff;font-family:'Avenir Next','Avenir','Nunito Sans',Arial,sans-serif;-webkit-font-smoothing:antialiased}
+@media (max-width:760px){
+  #scd-gate{background:
+    linear-gradient(180deg,rgba(14,26,64,.75) 0%,rgba(14,26,64,.35) 50%,rgba(14,26,64,.75) 100%),
+    url("login/login-bg.jpg") 40% center/cover no-repeat #0e1a40}
+}
+#scd-gate .scd-box{width:100%;max-width:380px;text-align:center;display:flex;flex-direction:column;align-items:center}
+#scd-gate .scd-logo{width:min(240px,60vw);height:auto;display:block;filter:drop-shadow(0 4px 24px rgba(0,0,0,.35))}
+#scd-gate .scd-sub{margin:20px 0 32px;font:500 12.5px/1 'Avenir Next','Nunito Sans',sans-serif;letter-spacing:.5px;text-transform:uppercase;color:#4fe0d1}
+#scd-gate form{width:100%;padding:20px;border-radius:24px;background:rgba(14,26,64,.45);border:1px solid rgba(255,255,255,.14);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+#scd-gate input{width:100%;padding:15px 22px;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);
+  color:#fff;font-family:inherit;font-size:16px;font-weight:400;line-height:1;text-align:center;outline:none;transition:border-color .2s}
+#scd-gate input::placeholder{color:rgba(255,255,255,.6)}
+#scd-gate input:focus{border-color:#4fe0d1}
+#scd-gate button{width:100%;margin-top:12px;padding:16px 26px;border:0;border-radius:999px;background:#4fe0d1;color:#132350;
+  font-family:inherit;font-size:15px;font-weight:600;line-height:1;cursor:pointer;transition:background .2s,box-shadow .2s}
+#scd-gate button:hover{background:#41beb1;box-shadow:0 8px 24px rgba(79,224,209,.25)}
+#scd-gate .scd-err:empty{display:none}
+#scd-gate .scd-err{margin-top:12px;font-size:14px;color:#ff8a8f}
+#scd-gate.scd-shake form{animation:scdShake .35s}
+@keyframes scdShake{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+@media (prefers-reduced-motion:reduce){#scd-gate.scd-shake form{animation:none}}
+</style>
+<script>
+(function(){
+  var PASSWORD = "1234";
+  var KEY = "scd-guideline-auth";
+  var ok = false;
+  try { ok = localStorage.getItem(KEY) === "ok"; } catch (e) {}
+  if (ok) return;
+  document.documentElement.classList.add("scd-locked");
+  document.addEventListener("DOMContentLoaded", function(){
+    var gate = document.createElement("div");
+    gate.id = "scd-gate";
+    gate.innerHTML =
+      '<div class="scd-box">' +
+        '<img class="scd-logo" src="Logos/SVG/SCD_Logo-Tagline_White.svg" alt="SCD — First to See">' +
+        '<p class="scd-sub">Brand Guidelines 2026</p>' +
+        '<form novalidate>' +
+          '<input type="password" inputmode="numeric" placeholder="Password" autocomplete="current-password" aria-label="Password">' +
+          '<button type="submit">Enter</button>' +
+          '<div class="scd-err" role="alert"></div>' +
+        '</form>' +
+      '</div>';
+    document.body.prepend(gate);
+    var form = gate.querySelector("form"), input = gate.querySelector("input"), err = gate.querySelector(".scd-err");
+    input.focus();
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+      if (input.value === PASSWORD) {
+        try { localStorage.setItem(KEY, "ok"); } catch (e) {}
+        document.documentElement.classList.remove("scd-locked");
+        gate.remove();
+      } else {
+        err.textContent = "Wrong password";
+        input.value = "";
+        gate.classList.remove("scd-shake"); void gate.offsetWidth; gate.classList.add("scd-shake");
+      }
+    });
+  });
+})();
+</script>
+<!-- ===== /Password gate ===== -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>SCD — Brand Guidelines</title>
