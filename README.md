@@ -4,12 +4,14 @@ Static brand-guidelines site (single `index.html`, no build step) with side navi
 
 **Sources**
 - Brand assets: SCD logo, regional logos, values, shapes and display alphabet (`downloads/source-ai`)
-- Colors and imagery: SCD Brandbook v4 (images pp. 22–25)
+- Colors: SCD Brandbook v4
+- Imagery: `Imagery/` (13 approved images, one gallery, no segments)
 - UI, typography, IR spectrum and value cards: Figma "SCD-Website-UI" (`qQN2yPcu2UAOIms0iFzTSO`)
 
 **Structure**
 ```
-index.html                 the site (all assets embedded, works offline)
+index.html                 the site
+Imagery/                   gallery images (SCD_Imagery_01–13.jpg)
 downloads/
   Logos/ Regional/ Values/ Type/   SVG + PNG (2400 px, transparent)
   Shapes/<shape>/                  SVG in all 12 brand colors
@@ -21,7 +23,6 @@ downloads/
 **Notes**
 - Avenir Next is a licensed font; the site previews it with Nunito Sans where it isn't installed.
 - Negative value lockups (`*_Negative.svg`) use live text in Avenir Next; use the PNG where the font isn't installed.
-- The Space imagery segment is a placeholder until updated images are supplied.
 
 **Deploy**
 Import this repo into Vercel as a static project (Framework: Other, no build command, output = root).
